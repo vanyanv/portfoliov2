@@ -1,9 +1,11 @@
-import Desktop from './components/Desktop';
+import Login from './components/Login';
+import MenuBar from './components/MenuBar';
 
 export default function Home() {
   return (
     <div>
-      <Desktop />
+      <MenuBar />
+      <Login userName={'Vardan Vanyan'} />
     </div>
   );
 }

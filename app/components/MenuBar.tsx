@@ -1,7 +1,11 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 
-export default function MenuBar() {
+type MenuBar = {
+  login: boolean;
+};
+
+export default function MenuBar({ login }: MenuBar) {
   const [dateTime, setDateTime] = useState(new Date());
 
   const formattedTime = dateTime.toLocaleTimeString([], {

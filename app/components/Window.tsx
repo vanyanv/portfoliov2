@@ -31,7 +31,6 @@ export default function Window({
           {title}
         </div>
       </div>
-
       {/* Content Area */}
       <div className='p-4'>{children}</div>
     </div>
