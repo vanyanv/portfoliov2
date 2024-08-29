@@ -1,38 +1,43 @@
 import React from 'react';
 
-export default function Window({
-  title,
-  children,
-}: {
-  title: string;
+type Window = {
+  isOpen: boolean;
+  onClose: () => void;
+  onMinimize: () => void;
+  onMaximize: () => void;
   children: React.ReactNode;
-}) {
+};
+const Window = ({
+  isOpen,
+  onClose,
+  onMinimize,
+  onMaximize,
+  children,
+}: Window) => {
+  if (!isOpen) return null;
   return (
-    <div className='relative max-w-lg mx-auto my-8 border border-gray-300 rounded-lg shadow-lg overflow-hidden bg-white'>
-      {/* Title Bar */}
-      <div className='flex items-center p-2 bg-gray-100 border-b border-gray-300'>
-        {/* Traffic Lights */}
-        <div className='flex space-x-1 ml-1'>
-          <div
-            className='w-3 h-3 bg-red-500 rounded-full cursor-pointer'
-            title='Close'
-          ></div>
-          <div
-            className='w-3 h-3 bg-yellow-500 rounded-full cursor-pointer'
-            title='Minimize'
-          ></div>
-          <div
-            className='w-3 h-3 bg-green-500 rounded-full cursor-pointer'
-            title='Zoom'
-          ></div>
+    <div className='fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50'>
+      <div className='bg-white rounded-lg shadow-lg w-96'>
+        <div className='flex justify-between items-center bg-gray-100 p-2 rounded-t-lg'>
+          <div className='flex space-x-2'>
+            <button
+              onClick={onClose}
+              className='w-3.5 h-3.5 bg-red-500 rounded-full'
+            ></button>
+            <button
+              onClick={onMinimize}
+              className='w-3.5 h-3.5 bg-yellow-500 rounded-full'
+            ></button>
+            <button
+              onClick={onMaximize}
+              className='w-3.5 h-3.5 bg-green-500 rounded-full'
+            ></button>
+          </div>
         </div>
-        {/* Title */}
-        <div className='flex-grow text-center text-gray-600 font-medium ml-2'>
-          {title}
-        </div>
+        <div className='p-4'>{children}</div>
       </div>
-      {/* Content Area */}
-      <div className='p-4'>{children}</div>
     </div>
   );
-}
+};
+
+export default Window;

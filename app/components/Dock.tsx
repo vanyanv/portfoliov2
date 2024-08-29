@@ -1,6 +1,10 @@
 import React from 'react';
 
-export default function Dock() {
+type Dock = {
+  handleOpen: (arg: boolean) => void;
+};
+
+export default function Dock({ handleOpen }: Dock) {
   return (
     <div className='fixed bottom-0 left-1/2 transform -translate-x-1/2 mb-4 flex space-x-4 bg-gray-800/50 rounded-xl p-2 backdrop-blur-md'>
       {[
@@ -12,6 +16,7 @@ export default function Dock() {
       ].map((icon, index) => (
         <div
           key={index}
+          onClick={() => handleOpen(true)}
           className='dock-item transform transition-transform duration-200 hover:scale-125 '
         >
           <img src={icon} alt={`App ${index + 1}`} className='w-12 h-12' />

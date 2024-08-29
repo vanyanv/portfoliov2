@@ -30,13 +30,11 @@ const Login: React.FC<LoginProps> = ({ userImage, userName, onLogin }) => {
         minute: '2-digit',
         hour12: true, // Change to false for 24-hour format
       });
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
       setTime(formattedTime);
     };
 
     updateTime();
-    const interval = setInterval(updateTime, 60000); // Update every minute
+    const interval = setInterval(updateTime, 1000); // Update every minute
     return () => clearInterval(interval);
   }, []);
 
@@ -49,7 +47,6 @@ const Login: React.FC<LoginProps> = ({ userImage, userName, onLogin }) => {
       {/* Time and Date - Positioned at the top */}
       <div className='flex justify-center mt-10'>
         <div className='text-center'>
-          <p className='text-white text-6xl font-bold'>{time}</p>
           <p className='text-white text-lg font-bold'>
             {new Date().toLocaleDateString('en-US', {
               weekday: 'long',
@@ -57,6 +54,7 @@ const Login: React.FC<LoginProps> = ({ userImage, userName, onLogin }) => {
               day: 'numeric',
             })}
           </p>
+          <p className='text-white text-6xl font-bold'>{time}</p>
         </div>
       </div>
 
